@@ -1,17 +1,12 @@
 package edu.curso.java.spring;
 
 import edu.curso.java.spring.service.Exportador;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 
-@Component("generadorDeDocumento")
 public class GeneradorDeDocumento {
 
 	private Exportador exportador;
 
-	@Autowired
-	public GeneradorDeDocumento(@Qualifier("exportadorXML") Exportador exportador) {
+	public GeneradorDeDocumento(Exportador exportador) {
 		this.exportador = exportador;
 	}
 
