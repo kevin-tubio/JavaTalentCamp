@@ -3,6 +3,9 @@ package edu.curso.java.spring.service.impl;
 import edu.curso.java.spring.Persona;
 import edu.curso.java.spring.service.Exportador;
 
+import org.springframework.stereotype.Service;
+
+@Service("exportadorTAB")
 public class ExportadorTAB implements Exportador {
 
 	@Override
