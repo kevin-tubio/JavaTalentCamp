@@ -1,14 +1,21 @@
 package com.sanchezih.di.spring;
 
+import com.sanchezih.di.spring.config.SpringConfig;
 import com.sanchezih.di.spring.service.Converter;
-import com.sanchezih.di.spring.service.impl.ARSToUSDConverter;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
 
 	public static void main(String[] args) {
 
 		double cantidad = 100;
-		Converter c = new ARSToUSDConverter();
+
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.register(SpringConfig.class);
+		context.refresh();
+
+		Converter c = (Converter) context.getBean("ARSToUSDConverter");
 		System.out.println(c.convert(cantidad));
 
 	}
