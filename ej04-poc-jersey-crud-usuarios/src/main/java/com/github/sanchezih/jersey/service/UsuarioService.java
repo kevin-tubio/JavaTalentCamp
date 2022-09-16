@@ -48,6 +48,9 @@ public class UsuarioService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createUser(Usuario userRequest) {
+		if (USUARIOS.get(userRequest.getUsername()) != null)
+			return Response.status(Status.BAD_REQUEST).entity("Ya existe un usuario con ese username").build();
+
 		USUARIOS.put(userRequest.getUsername(), userRequest);
 		return Response.ok(new ArrayList<>(USUARIOS.values())).build();
 	}
