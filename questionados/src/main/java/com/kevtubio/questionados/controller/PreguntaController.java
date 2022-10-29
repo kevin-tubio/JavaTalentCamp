@@ -1,0 +1,38 @@
+package com.kevtubio.questionados.controller;
+
+import com.kevtubio.questionados.dto.request.PreguntaRequestDTO;
+import com.kevtubio.questionados.entity.Pregunta;
+import com.kevtubio.questionados.service.PreguntaService;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@RestController
+@RequestMapping(path = "/api/preguntas")
+@RequiredArgsConstructor
+public class PreguntaController {
+
+    private final PreguntaService preguntaService;
+    private final ModelMapper modelMapper;
+
+    @GetMapping
+    public List<Pregunta> getAllPreguntas() {
+        return preguntaService.getAllPreguntas();
+    }
+
+    @PostMapping
+    public Pregunta createPregunta(@Valid @RequestBody PreguntaRequestDTO preguntaRequestDto) {
+        Pregunta pregunta = modelMapper.map(preguntaRequestDto, Pregunta.class);
+        preguntaService.createPregunta(pregunta);
+        return pregunta;
+    }
+
+    @GetMapping(path = "/{id}")
+    public Pregunta getPreguntaById(@PathVariable Integer id) {
+        return preguntaService.getPreguntaById(id);
+    }
+
+}
