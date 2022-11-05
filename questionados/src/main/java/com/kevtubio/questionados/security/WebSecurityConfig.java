@@ -60,6 +60,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private String[] getMatchers() {
         return new String[]{
+                "/",
+                "/index.html",
+                "/css/**",
+                "/img/**",
                 "/api/auth/**",
                 "/v2/api-docs",
                 "/swagger-resources",

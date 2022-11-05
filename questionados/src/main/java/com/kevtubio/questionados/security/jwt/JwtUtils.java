@@ -1,6 +1,6 @@
 package com.kevtubio.questionados.security.jwt;
 
-import com.kevtubio.questionados.entity.User;
+import com.kevtubio.questionados.entity.Usuario;
 
 import io.jsonwebtoken.*;
 
@@ -23,7 +23,7 @@ public class JwtUtils {
     private final JwtProperties jwtProperties;
 
     public String generateJwtToken(Authentication authentication) {
-        User userPrincipal = (User) authentication.getPrincipal();
+        Usuario userPrincipal = (Usuario) authentication.getPrincipal();
 
         return Jwts.builder()
                 .setSubject((userPrincipal.getUsername()))

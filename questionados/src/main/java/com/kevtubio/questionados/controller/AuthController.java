@@ -5,7 +5,7 @@ import com.kevtubio.questionados.dto.request.SignupRequestDTO;
 import com.kevtubio.questionados.dto.response.JwtResponse;
 import com.kevtubio.questionados.dto.response.MessageResponse;
 import com.kevtubio.questionados.entity.Role;
-import com.kevtubio.questionados.entity.User;
+import com.kevtubio.questionados.entity.Usuario;
 import com.kevtubio.questionados.repository.UserRepository;
 import com.kevtubio.questionados.security.jwt.JwtUtils;
 
@@ -50,7 +50,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        User userDetails = (User) authentication.getPrincipal();
+        Usuario userDetails = (Usuario) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList());
 
         return ResponseEntity.ok(
@@ -68,7 +68,7 @@ public class AuthController {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already in use!"));
         }
 
-        User user = new User(
+        Usuario user = new Usuario(
                 signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword())

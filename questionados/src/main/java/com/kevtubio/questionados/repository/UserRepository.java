@@ -1,6 +1,6 @@
 package com.kevtubio.questionados.repository;
 
-import com.kevtubio.questionados.entity.User;
+import com.kevtubio.questionados.entity.Usuario;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<Usuario, Long> {
 
-    Optional<User> findByUsername(String username);
+    Optional<Usuario> findByUsername(String username);
 
     boolean existsByUsername(String username);
 
