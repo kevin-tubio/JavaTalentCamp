@@ -6,6 +6,7 @@ import com.kevtubio.questionados.service.CategoriaService;
 
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,6 +26,7 @@ public class CategoriaController {
     }
 
     @PostMapping
+    @Secured({"ROLE_MODERATOR", "ROLE_ADMIN"})
     public void createCategoria(@Valid @RequestBody CategoriaRequestDTO categoriaRequestDTO) {
         categoriaService.createCategoria(categoriaRequestDTO);
     }
@@ -35,6 +37,7 @@ public class CategoriaController {
     }
 
     @DeleteMapping(path = "/{id}")
+    @Secured({"ROLE_MODERATOR", "ROLE_ADMIN"})
     public void deleteCategoria(@PathVariable Integer id) {
         categoriaService.deleteCategoria(id);
     }

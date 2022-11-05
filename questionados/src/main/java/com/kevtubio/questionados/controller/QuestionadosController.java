@@ -5,6 +5,7 @@ import com.kevtubio.questionados.dto.response.RespuestaVerificada;
 import com.kevtubio.questionados.entity.Pregunta;
 import com.kevtubio.questionados.service.PreguntaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
