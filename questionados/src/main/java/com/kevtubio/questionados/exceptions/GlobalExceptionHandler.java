@@ -48,7 +48,8 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler({
 			ForbiddenException.class,
-			AccessDeniedException.class
+			AccessDeniedException.class,
+			TokenRefreshException.class
 	})
 	@ResponseBody
 	@ResponseStatus(HttpStatus.FORBIDDEN)

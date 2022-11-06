@@ -1,5 +1,6 @@
 package com.kevtubio.questionados.service;
 
+import com.kevtubio.questionados.entity.Usuario;
 import com.kevtubio.questionados.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;

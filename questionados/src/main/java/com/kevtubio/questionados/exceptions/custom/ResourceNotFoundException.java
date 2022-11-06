@@ -2,7 +2,8 @@ package com.kevtubio.questionados.exceptions.custom;
 
 public class ResourceNotFoundException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -1191111763586653346L;
+
 	private static final String DESCRIPTION = "NotFound Exception (404)";
 
 	private final String nombreDelRecurso;

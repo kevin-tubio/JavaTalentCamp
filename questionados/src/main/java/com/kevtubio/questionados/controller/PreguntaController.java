@@ -23,6 +23,7 @@ public class PreguntaController {
     private final ModelMapper modelMapper;
 
     @GetMapping
+    @Secured({"ROLE_USER", "ROLE_MODERATOR", "ROLE_ADMIN"})
     public List<Pregunta> getAllPreguntas() {
         return preguntaService.getAllPreguntas();
     }
@@ -36,6 +37,7 @@ public class PreguntaController {
     }
 
     @GetMapping(path = "/{id}")
+    @Secured({"ROLE_USER", "ROLE_MODERATOR", "ROLE_ADMIN"})
     public Pregunta getPreguntaById(@PathVariable Integer id) {
         return preguntaService.getPreguntaById(id);
     }

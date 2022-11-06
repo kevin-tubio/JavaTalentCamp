@@ -1,13 +1,14 @@
 package com.kevtubio.questionados.security.jwt;
 
+import com.kevtubio.questionados.entity.Usuario;
 import lombok.RequiredArgsConstructor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -38,16 +40,17 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
         try {
             String jwt = parseJwt(request);
-            if (jwt == null || !jwtUtils.validateJwtToken(jwt)) {
+            if (jwt == null || !jwtUtils.isValidToken(jwt)) {
                 filterChain.doFilter(request, response);
                 return;
             }
 
             String username = jwtUtils.getUserNameFromJwtToken(jwt);
+            List<GrantedAuthority> grants = jwtUtils.getGrants(jwt);
 
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+            Usuario usuario = (Usuario) userDetailsService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                    userDetails, null, userDetails.getAuthorities()
+                    usuario, usuario.getPassword(), grants
             );
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 

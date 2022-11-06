@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class JwtProperties {
 
     private String secret;
-    private Long duration;
+    private Long tokenDurationMinutes;
+    private Long refreshTokenDurationDays;
 
 }

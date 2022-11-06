@@ -21,6 +21,7 @@ public class CategoriaController {
     private final CategoriaService categoriaService;
 
     @GetMapping
+    @Secured({"ROLE_USER", "ROLE_MODERATOR", "ROLE_ADMIN"})
     public List<Categoria> getAllCategorias() {
         return categoriaService.getAllCategorias();
     }
@@ -32,6 +33,7 @@ public class CategoriaController {
     }
 
     @GetMapping(path = "/{id}")
+    @Secured({"ROLE_USER", "ROLE_MODERATOR", "ROLE_ADMIN"})
     public Categoria getCategoriaById(@PathVariable Integer id) {
         return categoriaService.getCategoria(id);
     }
